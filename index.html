@@ -6,119 +6,197 @@
     <title>Color Table</title>
     <style>
         table {
-            width: 50%;
+            width: 100%;
             border-collapse: collapse;
-            text-align: left;
         }
         th, td {
-            border: 1px solid black;
-            padding: 8px;
+            border: 1px solid #000;
+            text-align: center;
+            padding: 5px;
         }
         .color-box {
-            width: 100px;
-            height: 20px;
-            display: inline-block;
+            width: 50px;
+            height: 50px;
         }
     </style>
 </head>
 <body>
-    <h2>Color Table</h2>
     <table>
         <tr>
             <th>Color Name</th>
-            <th>RGB Value (Hex)</th>
-            <th>Color Sample</th>
+            <th>Hex Value</th>
+            <th>Color Square</th>
+            <th>White Background</th>
+            <th>Black Background</th>
         </tr>
-        <tr>
-            <td>AliceBlue</td>
-            <td>#F0F8FF</td>
-            <td><span class="color-box" style="background-color:#F0F8FF;"></span></td>
-        </tr>
-        <tr>
-            <td>AntiqueWhite</td>
-            <td>#FAEBD7</td>
-            <td><span class="color-box" style="background-color:#FAEBD7;"></span></td>
-        </tr>
-        <tr>
-            <td>Aqua</td>
-            <td>#00FFFF</td>
-            <td><span class="color-box" style="background-color:#00FFFF;"></span></td>
-        </tr>
-        <tr>
-            <td>Aquamarine</td>
-            <td>#7FFFD4</td>
-            <td><span class="color-box" style="background-color:#7FFFD4;"></span></td>
-        </tr>
-        <tr>
-            <td>Azure</td>
-            <td>#F0FFFF</td>
-            <td><span class="color-box" style="background-color:#F0FFFF;"></span></td>
-        </tr>
-        <tr>
-            <td>Beige</td>
-            <td>#F5F5DC</td>
-            <td><span class="color-box" style="background-color:#F5F5DC;"></span></td>
-        </tr>
-        <tr>
-            <td>Black</td>
-            <td>#000000</td>
-            <td><span class="color-box" style="background-color:#000000;"></span></td>
-        </tr>
-        <tr>
-            <td>Blue</td>
-            <td>#0000FF</td>
-            <td><span class="color-box" style="background-color:#0000FF;"></span></td>
-        </tr>
-        <tr>
-            <td>Brown</td>
-            <td>#A52A2A</td>
-            <td><span class="color-box" style="background-color:#A52A2A;"></span></td>
-        </tr>
-        <tr>
-            <td>Cyan</td>
-            <td>#00FFFF</td>
-            <td><span class="color-box" style="background-color:#00FFFF;"></span></td>
-        </tr>
-        <tr>
-            <td>Gold</td>
-            <td>#FFD700</td>
-            <td><span class="color-box" style="background-color:#FFD700;"></span></td>
-        </tr>
-        <tr>
-            <td>Gray</td>
-            <td>#808080</td>
-            <td><span class="color-box" style="background-color:#808080;"></span></td>
-        </tr>
-        <tr>
-            <td>Green</td>
-            <td>#008000</td>
-            <td><span class="color-box" style="background-color:#008000;"></span></td>
-        </tr>
-        <tr>
-            <td>Magenta</td>
-            <td>#FF00FF</td>
-            <td><span class="color-box" style="background-color:#FF00FF;"></span></td>
-        </tr>
-        <tr>
-            <td>Red</td>
-            <td>#FF0000</td>
-            <td><span class="color-box" style="background-color:#FF0000;"></span></td>
-        </tr>
-        <tr>
-            <td>Silver</td>
-            <td>#C0C0C0</td>
-            <td><span class="color-box" style="background-color:#C0C0C0;"></span></td>
-        </tr>
-        <tr>
-            <td>White</td>
-            <td>#FFFFFF</td>
-            <td><span class="color-box" style="background-color:#FFFFFF;"></span></td>
-        </tr>
-        <tr>
-            <td>Yellow</td>
-            <td>#FFFF00</td>
-            <td><span class="color-box" style="background-color:#FFFF00;"></span></td>
-        </tr>
+        <tbody id="colorTableBody">
+            <!-- Rows will be injected by JavaScript -->
+        </tbody>
     </table>
+
+    <script>
+        const colors = [
+            { name: "AliceBlue", hex: "#F0F8FF" },
+            { name: "AntiqueWhite", hex: "#FAEBD7" },
+            { name: "Aqua", hex: "#00FFFF" },
+            { name: "Aquamarine", hex: "#7FFFD4" },
+            { name: "Azure", hex: "#F0FFFF" },
+            { name: "Beige", hex: "#F5F5DC" },
+            { name: "Bisque", hex: "#FFE4C4" },
+            { name: "Black", hex: "#000000" },
+            { name: "BlanchedAlmond", hex: "#FFEBCD" },
+            { name: "Blue", hex: "#0000FF" },
+            { name: "BlueViolet", hex: "#8A2BE2" },
+            { name: "Brown", hex: "#A52A2A" },
+            { name: "Burlywood", hex: "#DEB887" },
+            { name: "CadetBlue", hex: "#5F9EA0" },
+            { name: "Chartreuse", hex: "#7FFF00" },
+            { name: "Chocolate", hex: "#D2691E" },
+            { name: "Coral", hex: "#FF7F50" },
+            { name: "CornflowerBlue", hex: "#6495ED" },
+            { name: "Cornsilk", hex: "#FFF8DC" },
+            { name: "Crimson", hex: "#DC143C" },
+            { name: "Cyan", hex: "#00FFFF" },
+            { name: "DarkBlue", hex: "#00008B" },
+            { name: "DarkCyan", hex: "#008B8B" },
+            { name: "DarkGoldenrod", hex: "#B8860B" },
+            { name: "DarkGray", hex: "#A9A9A9" },
+            { name: "DarkGreen", hex: "#006400" },
+            { name: "DarkGrey", hex: "#A9A9A9" },
+            { name: "DarkKhaki", hex: "#BDB76B" },
+            { name: "DarkMagenta", hex: "#8B008B" },
+            { name: "DarkOliveGreen", hex: "#556B2F" },
+            { name: "DarkOrange", hex: "#FF8C00" },
+            { name: "DarkOrchid", hex: "#9932CC" },
+            { name: "DarkRed", hex: "#8B0000" },
+            { name: "DarkSalmon", hex: "#E9967A" },
+            { name: "DarkSeaGreen", hex: "#8FBC8F" },
+            { name: "DarkSlateBlue", hex: "#483D8B" },
+            { name: "DarkSlateGray", hex: "#2F4F4F" },
+            { name: "DarkSlateGrey", hex: "#2F4F4F" },
+            { name: "DarkTurquoise", hex: "#00CED1" },
+            { name: "DarkViolet", hex: "#9400D3" },
+            { name: "DeepPink", hex: "#FF1493" },
+            { name: "DeepSkyBlue", hex: "#00BFFF" },
+            { name: "DimGray", hex: "#696969" },
+            { name: "DimGrey", hex: "#696969" },
+            { name: "DodgerBlue", hex: "#1E90FF" },
+            { name: "Firebrick", hex: "#B22222" },
+            { name: "FloralWhite", hex: "#FFFAF0" },
+            { name: "ForestGreen", hex: "#228B22" },
+            { name: "Fuchsia", hex: "#FF00FF" },
+            { name: "Gainsboro", hex: "#DCDCDC" },
+            { name: "GhostWhite", hex: "#F8F8FF" },
+            { name: "Gold", hex: "#FFD700" },
+            { name: "Goldenrod", hex: "#DAA520" },
+            { name: "Gray", hex: "#808080" },
+            { name: "Green", hex: "#008000" },
+            { name: "GreenYellow", hex: "#ADFF2F" },
+            { name: "Grey", hex: "#808080" },
+            { name: "Honeydew", hex: "#F0FFF0" },
+            { name: "Hotpink", hex: "#FF69B4" },
+            { name: "IndianRed", hex: "#CD5C5C" },
+            { name: "Indigo", hex: "#4B0082" },
+            { name: "Ivory", hex: "#FFFFF0" },
+            { name: "Khaki", hex: "#F0E68C" },
+            { name: "Lavender", hex: "#E6E6FA" },
+            { name: "LavenderBlush", hex: "#FFF0F5" },
+            { name: "LawnGreen", hex: "#7CFC00" },
+            { name: "LemonChiffon", hex: "#FFFACD" },
+            { name: "LightBlue", hex: "#ADD8E6" },
+            { name: "LightCoral", hex: "#F08080" },
+            { name: "LightCyan", hex: "#E0FFFF" },
+            { name: "LightGoldenrodYellow", hex: "#FAFAD2" },
+            { name: "LightGray", hex: "#D3D3D3" },
+            { name: "LightGreen", hex: "#90EE90" },
+            { name: "LightGrey", hex: "#D3D3D3" },
+            { name: "LightPink", hex: "#FFB6C1" },
+            { name: "LightSalmon", hex: "#FFA07A" },
+            { name: "LightSeaGreen", hex: "#20B2AA" },
+            { name: "LightSkyBlue", hex: "#87CEFA" },
+            { name: "LightSlateGray", hex: "#778899" },
+            { name: "LightSlateGrey", hex: "#778899" },
+            { name: "LightSteelBlue", hex: "#B0C4DE" },
+            { name: "LightYellow", hex: "#FFFFE0" },
+            { name: "Lime", hex: "#00FF00" },
+            { name: "LimeGreen", hex: "#32CD32" },
+            { name: "Linen", hex: "#FAF0E6" },
+            { name: "Magenta", hex: "#FF00FF" },
+            { name: "Maroon", hex: "#800000" },
+            { name: "MediumAquamarine", hex: "#66CDAA" },
+            { name: "MediumBlue", hex: "#0000CD" },
+            { name: "MediumOrchid", hex: "#BA55D3" },
+            { name: "MediumPurple", hex: "#9370DB" },
+            { name: "MediumSeaGreen", hex: "#3CB371" },
+            { name: "MediumSlateBlue", hex: "#7B68EE" },
+            { name: "MediumSpringGreen", hex: "#00FA9A" },
+            { name: "MediumTurquoise", hex: "#48D1CC" },
+            { name: "MediumVioletRed", hex: "#C71585" },
+            { name: "MidnightBlue", hex: "#191970" },
+            { name: "MintCream", hex: "#F5FFFA" },
+            { name: "MistyRose", hex: "#FFE4E1" },
+            { name: "Moccasin", hex: "#FFE4B5" },
+            { name: "NavajoWhite", hex: "#FFDEAD" },
+            { name: "Navy", hex: "#000080" },
+            { name: "OldLace", hex: "#FDF5E6" },
+            { name: "Olive", hex: "#808000" },
+            { name: "OliveDrab", hex: "#6B8E23" },
+            { name: "Orange", hex: "#FFA500" },
+            { name: "OrangeRed", hex: "#FF4500" },
+            { name: "Orchid", hex: "#DA70D6" },
+            { name: "PaleGoldenrod", hex: "#EEE8AA" },
+            { name: "PaleGreen", hex: "#98FB98" },
+            { name: "PaleTurquoise", hex: "#AFEEEE" },
+            { name: "PaleVioletred", hex: "#DB7093" },
+            { name: "PapayaWhip", hex: "#FFEFD5" },
+            { name: "PeachPuff", hex: "#FFDAB9" },
+            { name: "Peru", hex: "#CD853F" },
+            { name: "Pink", hex: "#FFC0CB" },
+            { name: "Plum", hex: "#DDA0DD" },
+            { name: "PowderBlue", hex: "#B0E0E6" },
+            { name: "Purple", hex: "#800080" },
+            { name: "Red", hex: "#FF0000" },
+            { name: "RosyBrown", hex: "#BC8F8F" },
+            { name: "RoyalBlue", hex: "#4169E1" },
+            { name: "SaddleBrown", hex: "#8B4513" },
+            { name: "Salmon", hex: "#FA8072" },
+            { name: "SandyBrown", hex: "#F4A460" },
+            { name: "SeaGreen", hex: "#2E8B57" },
+            { name: "SeaShell", hex: "#FFF5EE" },
+            { name: "Sienna", hex: "#A0522D" },
+            { name: "Silver", hex: "#C0C0C0" },
+            { name: "SkyBlue", hex: "#87CEEB" },
+            { name: "SlateBlue", hex: "#6A5ACD" },
+            { name: "SlateGray", hex: "#708090" },
+            { name: "SlateGrey", hex: "#708090" },
+            { name: "Snow", hex: "#FFFAFA" },
+            { name: "SpringGreen", hex: "#00FF7F" },
+            { name: "SteelBlue", hex: "#4682B4" },
+            { name: "Tan", hex: "#D2B48C" },
+            { name: "Teal", hex: "#008080" },
+            { name: "Thistle", hex: "#D8BFD8" },
+            { name: "Tomato", hex: "#FF6347" },
+            { name: "Turquoise", hex: "#40E0D0" },
+            { name: "Violet", hex: "#EE82EE" },
+            { name: "Wheat", hex: "#F5DEB3" },
+            { name: "White", hex: "#FFFFFF" },
+            { name: "WhiteSmoke", hex: "#F5F5F5" },
+            { name: "Yellow", hex: "#FFFF00" },
+            { name: "YellowGreen", hex: "#9ACD32" }
+        ];
+
+        const tableBody = document.getElementById("colorTableBody");
+        colors.forEach(color => {
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${color.name}</td>
+                    <td>${color.hex}</td>
+                    <td class="color-box" style="background-color: ${color.hex};"></td>
+                    <td style="color: ${color.hex}; background-color: #FFFFFF;">${color.name}</td>
+                    <td style="color: ${color.hex}; background-color: #000000;">${color.name}</td>
+                </tr>
+            `;
+        });
+    </script>
 </body>
 </html>
